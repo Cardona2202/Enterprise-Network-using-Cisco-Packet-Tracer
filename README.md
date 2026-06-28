@@ -245,11 +245,6 @@ Enterprise-Network/
 
 **Angelo Adame**
 
-* 🎓 Bachelor of Science in Computer Science (Cum Laude)
-* 🌐 Aspiring Network Engineer
-* 📚 CCNA Candidate
-* 💼 Currently working as an IT Secretary
-
 ---
 
 ## ⭐ Project Highlights
