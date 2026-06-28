@@ -1,116 +1,156 @@
 # Enterprise Network using Cisco Packet Tracer
 
-> Enterprise Cisco Packet Tracer network implementing GRE Tunnel, OSPF, HSRP, SSH, VLANs, ACLs, PAT, DHCP Snooping, and Layer 2 security.
+> A CCNA-level enterprise network project demonstrating secure inter-branch connectivity, dynamic routing, gateway redundancy, Layer 2 security, and centralized network management using Cisco enterprise technologies.
 
 ---
 
 # 📌 Overview
 
-This project simulates an enterprise network consisting of a **Main Branch** and a **Branch Office** connected through an ISP. The network follows Cisco's hierarchical design model (Core, Distribution, and Access layers) and focuses on high availability, security, redundancy, and centralized network management.
+This project simulates a secure enterprise network connecting a **Main Branch** and a **Branch Office** through an ISP using **GRE Tunnel**. The topology follows Cisco's **Hierarchical Network Design Model**, consisting of Core, Distribution, and Access Layers.
 
-The network was developed using **Cisco Packet Tracer** to demonstrate real-world enterprise networking concepts aligned with the CCNA curriculum.
+The network was built using **Cisco Packet Tracer** to demonstrate practical enterprise networking concepts, including routing, switching, redundancy, network security, and centralized management.
+
+---
+
+# 🎯 Objectives
+
+* Build a scalable enterprise network.
+* Provide secure communication between branches.
+* Implement dynamic routing.
+* Provide gateway redundancy.
+* Secure Layer 2 infrastructure.
+* Secure remote device management.
+* Protect against common Layer 2 attacks.
+* Implement Internet connectivity using PAT.
+* Restrict management access using ACLs.
+* Demonstrate enterprise troubleshooting.
 
 ---
 
 # 🏗️ Network Topology
 
-The enterprise network consists of:
-
 ## Main Branch
 
-* 2 Cisco 3560 Layer 3 Switches
-* 4 Cisco 2960 Layer 2 Switches
 * Cisco 2911 Router
+* 2 × Cisco Catalyst 3560 Layer 3 Switches
+* 4 × Cisco Catalyst 2960 Layer 2 Switches
 * DHCP/DNS Server
-* Additional Server
-* Wireless Access Point
-* HR Department
-* Accounting Department
-* IT Department
+* Internal Server
+* Guest Wireless Access Point
 * Management Switch
+* HR VLAN
+* Accounting VLAN
+* IT VLAN
+
+---
 
 ## Branch Office
 
-* 2 Cisco 3560 Layer 3 Switches
-* 4 Cisco 2960 Layer 2 Switches
 * Cisco 2911 Router
-* DHCP for Branch
-* Wireless Access Point
-* HR Department
-* Accounting Department
-* IT Department
+* 2 × Cisco Catalyst 3560 Layer 3 Switches
+* 4 × Cisco Catalyst 2960 Layer 2 Switches
+* DHCP for the Branch
+* Guest Wireless Access Point
 * Management Switch
+* HR VLAN
+* Accounting VLAN
+* IT VLAN
 
-Both sites communicate through an ISP using a **GRE Tunnel**, while **OSPF** dynamically exchanges routes between branches.
+---
+
+## WAN
+
+* ISP Router
+* GRE Tunnel
+* OSPF Routing
 
 ---
 
 # 🚀 Technologies Implemented
 
+* ✅ VLAN Segmentation
+* ✅ Inter-VLAN Routing
 * ✅ GRE Tunnel
-* ✅ OSPF Dynamic Routing
-* ✅ HSRP Gateway Redundancy
+* ✅ OSPF
+* ✅ HSRP
 * ✅ Rapid PVST+
-* ✅ Root Primary / Secondary Election
+* ✅ Root Primary / Root Secondary
 * ✅ PortFast
 * ✅ BPDU Guard
 * ✅ Port Security
 * ✅ DHCP Snooping
-* ✅ Port Address Translation (PAT)
-* ✅ Access Control Lists (ACL)
+* ✅ Dynamic ARP Inspection (DAI)
+* ✅ ACL
+* ✅ PAT
 * ✅ SSH Version 2
 * ✅ Guest Wireless VLAN
+* ✅ VLAN 999 for Unused Ports
+
+---
+
+# 🌐 VLAN Design
+
+| VLAN     | Department   |
+| -------- | ------------ |
+| VLAN 10  | HR           |
+| VLAN 20  | Accounting   |
+| VLAN 30  | IT           |
+| VLAN 40  | Servers      |
+| VLAN 999 | Unused Ports |
 
 ---
 
 # 🔒 Security Features
 
-The network is secured using multiple Cisco security technologies.
+The network incorporates multiple Cisco security technologies to secure both management access and user traffic.
 
 * SSH Version 2
 * Local User Authentication
 * RSA Encryption
 * Enable Secret Passwords
-* ACL-based SSH Restrictions
+* ACL-protected SSH Access
 * Port Security
 * DHCP Snooping
+* Dynamic ARP Inspection
 * BPDU Guard
-* PAT
+* PortFast
 * VLAN Segmentation
+* VLAN 999 for Unused Ports
+* PAT
 
 ---
 
 # 🔑 SSH Access Policy
 
-The Main Branch acts as the centralized network management site.
+## Main Branch IT
 
-## Main Branch IT Administrators
+The Main Branch IT department acts as the centralized administration team.
 
-Allowed to SSH into:
+Allowed SSH Access:
 
-* All Main Branch Layer 2 Switches
-* All Main Branch Layer 3 Switches
-* All Branch Office Layer 2 Switches
-* All Branch Office Layer 3 Switches
+* Main Branch Layer 2 Switches
+* Main Branch Layer 3 Switches
+* Branch Layer 2 Switches
+* Branch Layer 3 Switches
 
 ---
 
-## Branch Office IT Administrators
+## Branch Office IT
 
-Allowed to SSH into:
+Allowed SSH Access:
 
-* Branch Office Layer 2 Switches
-* Branch Office Layer 3 Switches
+* Branch Layer 2 Switches
+* Branch Layer 3 Switches
 
-Not Allowed:
+Denied:
 
 * Main Branch Switches
 
-SSH access is restricted using Access Control Lists (ACLs) applied to the VTY lines.
+SSH access is controlled through Access Control Lists applied to the VTY lines.
 
 ---
 
-# 👤 SSH Management Accounts (Lab Credentials)
+# 👤 SSH Management Accounts
 
 ## Main Branch
 
@@ -136,57 +176,148 @@ SSH access is restricted using Access Control Lists (ACLs) applied to the VTY li
 | Accounting Switch | adminACCb   | adminACCb   | secretACCb    | 192.168.20.9   |
 | IT Switch         | adminITb    | adminITb    | secretITb     | 192.168.30.9   |
 
-> **Note:** These credentials are used for educational purposes within this Packet Tracer lab and should not be used in production environments.
+---
+
+# 🛡️ Enterprise Security Implementation
+
+## Port Security
+
+* Sticky MAC Address
+* Maximum MAC Address = 1
+* Violation Mode = Shutdown
 
 ---
 
-# 🌐 Technologies Used
+## DHCP Snooping
 
-| Technology               | Description                                                                     |
-| ------------------------ | ------------------------------------------------------------------------------- |
-| GRE Tunnel               | Provides secure logical connectivity between the Main Branch and Branch Office. |
-| OSPF                     | Dynamically exchanges routing information between sites.                        |
-| HSRP                     | Provides gateway redundancy for user VLANs.                                     |
-| Rapid PVST+              | Prevents Layer 2 loops while maintaining redundancy.                            |
-| Root Primary / Secondary | Ensures predictable spanning-tree topology.                                     |
-| PortFast                 | Speeds up access port initialization.                                           |
-| BPDU Guard               | Protects edge ports from unauthorized switches.                                 |
-| Port Security            | Restricts unauthorized devices on access ports.                                 |
-| DHCP Snooping            | Prevents rogue DHCP servers.                                                    |
-| PAT                      | Allows multiple hosts to share a single public IP address.                      |
-| ACL                      | Controls traffic flow and restricts SSH access.                                 |
-| SSH                      | Provides encrypted remote device management.                                    |
+Protects the network from rogue DHCP servers by allowing DHCP responses only from trusted interfaces.
+
+---
+
+## Dynamic ARP Inspection (DAI)
+
+Protects against:
+
+* ARP Spoofing
+* ARP Poisoning
+* Man-in-the-Middle attacks
+
+DAI validates ARP packets using the DHCP Snooping Binding Table.
+
+---
+
+## BPDU Guard
+
+Automatically disables PortFast ports receiving BPDUs to prevent unauthorized switches.
+
+---
+
+## PortFast
+
+Configured on all user-facing interfaces for immediate forwarding.
+
+---
+
+## VLAN 999 (Unused Ports)
+
+All unused switch interfaces are configured with the following:
+
+* Assigned to VLAN 999
+* Configured as Access Ports
+* Administratively Shutdown
+
+Benefits
+
+* Prevents unauthorized physical access
+* Removes unused ports from production VLANs
+* Reduces the attack surface
+* Follows Cisco security best practices
+
+---
+
+## PAT
+
+Allows multiple private IP addresses to share a single public IP address.
+
+---
+
+## ACL
+
+ACLs are implemented to:
+
+* Restrict SSH management
+* Filter inter-VLAN traffic
+* Protect internal resources
+* Control network access
+
+---
+
+# 🌐 Routing & Redundancy
+
+## GRE Tunnel
+
+Provides logical connectivity between both branches through the ISP.
+
+Benefits
+
+* Supports OSPF
+* Secure private routing
+* Site-to-site connectivity
+
+---
+
+## OSPF
+
+Configured to dynamically exchange routes between branches.
+
+Benefits
+
+* Fast convergence
+* Automatic route learning
+* Scalable routing
+
+---
+
+## HSRP
+
+Provides gateway redundancy.
+
+Benefits
+
+* Active/Standby Gateway
+* Automatic Failover
+* High Availability
+
+---
+
+## Rapid PVST+
+
+Configured with:
+
+* Root Primary
+* Root Secondary
+
+Provides:
+
+* Loop Prevention
+* Stable Topology
+* Redundant Links
 
 ---
 
 # 🛠️ Challenges Encountered
 
-| Challenge                                                       | Resolution                                                                                                                   |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| PC9 could not ping the Branch router.                           | Verified default gateway configuration, OSPF routes, and GRE tunnel connectivity.                                            |
-| VLANs were missing on an access switch.                         | Created VLANs, assigned access ports, and configured trunk links.                                                            |
-| PCs could not reach the Layer 3 switch or router.               | Configured SVIs with IP addresses, enabled interfaces using `no shutdown`, and verified inter-VLAN routing.                  |
-| Communication between branches failed after enabling NAT/PAT.   | Configured NAT Exemption (No-NAT) for traffic traversing the GRE tunnel.                                                     |
-| Additional VLANs needed to be deployed.                         | Created VLANs across all switches and updated SVIs, DHCP scopes, HSRP, OSPF, and ACL configurations.                         |
-| Added a Guest Wireless Access Point.                            | Created a dedicated Guest VLAN and isolated guest traffic using ACLs.                                                        |
-| Wireless clients connected but failed to receive an IP address. | Reset the AP connection and verified VLAN assignment, DHCP configuration, trunk ports, and DHCP Snooping trusted interfaces. |
-| HSRP continuously changed between Active and Standby states.    | Configured Root Primary and Root Secondary switches for all VLANs to stabilize STP and eliminate HSRP flapping.              |
-| STP blocked unexpected trunk links.                             | Adjusted bridge priorities to establish predictable Root Bridge selection for every VLAN.                                    |
-
----
-
-# 📚 Lessons Learned
-
-This project reinforced several enterprise networking concepts:
-
-* GRE tunnels require NAT Exemption for private inter-site communication.
-* Every VLAN requires an SVI with an IP address to enable inter-VLAN routing.
-* Stable HSRP operation depends on a properly designed STP topology.
-* Root Bridge planning significantly improves network stability.
-* DHCP Snooping requires trusted interfaces to permit legitimate DHCP traffic.
-* ACLs provide fine-grained control over management and user traffic.
-* SSH is a secure alternative to Telnet for remote device management.
-* Proper planning of VLANs, IP addressing, and redundancy simplifies deployment and troubleshooting.
+| Challenge                                        | Solution                                                                                        |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| PC9 could not ping the Branch router.            | Verified gateway configuration, GRE Tunnel, and OSPF routing.                                   |
+| VLANs were not configured on the switch.         | Created VLANs and configured trunk/access ports.                                                |
+| PCs could not ping the Layer 3 switch.           | Configured SVIs with IP addresses and enabled inter-VLAN routing.                               |
+| Branch communication failed after enabling PAT.  | Configured NAT Exemption (No-NAT) for GRE Tunnel traffic.                                       |
+| Additional VLANs were added.                     | Updated VLAN database, SVIs, HSRP, OSPF, DHCP, and ACL configurations.                          |
+| Added Guest Wireless Access Point.               | Created Guest VLAN and isolated traffic using ACLs.                                             |
+| Wireless clients failed to receive IP addresses. | Reset AP connection and verified DHCP, VLAN, trunk ports, DHCP Snooping, and DAI configuration. |
+| HSRP continuously changed Active/Standby.        | Configured STP Root Primary and Root Secondary for every VLAN.                                  |
+| Unexpected STP blocking.                         | Adjusted bridge priorities for predictable Root Bridge selection.                               |
 
 ---
 
@@ -195,20 +326,23 @@ This project reinforced several enterprise networking concepts:
 * Enterprise Network Design
 * VLAN Configuration
 * Inter-VLAN Routing
-* OSPF Configuration
-* GRE Tunnel Deployment
-* HSRP Configuration
-* Spanning Tree Optimization
-* Layer 2 Security
-* ACL Configuration
+* GRE Tunnel
+* OSPF
+* HSRP
+* Rapid PVST+
+* STP Optimization
+* VLAN Hardening
+* Port Security
 * DHCP Snooping
-* NAT/PAT Configuration
+* Dynamic ARP Inspection
+* ACL Configuration
+* PAT Configuration
 * SSH Configuration
-* Enterprise Network Troubleshooting
+* Enterprise Troubleshooting
 
 ---
 
-# 🖥️ Software Used
+# 🖥️ Software
 
 * Cisco Packet Tracer
 * Cisco IOS
@@ -224,29 +358,45 @@ Enterprise-Network/
 │
 ├── README.md
 ├── Enterprise_Network.pkt
-├── screenshots/
-│   ├── topology.png
-│   ├── ospf-neighbor.png
-│   ├── hsrp.png
-│   ├── ssh.png
-│   ├── port-security.png
-│   └── dhcp-snooping.png
 ├── configs/
 │   ├── routers/
 │   ├── layer3-switches/
 │   └── layer2-switches/
+├── screenshots/
+│   ├── topology.png
+│   ├── gre-tunnel.png
+│   ├── ospf-neighbor.png
+│   ├── hsrp.png
+│   ├── ssh.png
+│   ├── port-security.png
+│   ├── dhcp-snooping.png
+│   ├── dai.png
+│   └── vlan999.png
 └── documentation/
     └── Enterprise_Network_Documentation.pdf
 ```
 
 ---
 
-# 👨‍💻 Author
+# 📚 Lessons Learned
 
-**Angelo Adame**
+* GRE tunnels require NAT Exemption for private inter-site traffic.
+* Proper SVI configuration is essential for inter-VLAN routing.
+* HSRP stability depends on proper STP root bridge placement.
+* DHCP Snooping and DAI work together to secure Layer 2 communication.
+* VLAN 999 is an effective method for securing unused switch ports.
+* SSH provides secure remote administration compared to Telnet.
+* Proper network planning reduces troubleshooting time and improves scalability.
 
 ---
 
-## ⭐ Project Highlights
+# 👨‍💻 Author
 
-This project demonstrates the implementation of a secure and resilient enterprise network using Cisco technologies. It showcases practical experience in network design, routing, switching, redundancy, Layer 2 security, remote management, and troubleshooting. The project serves as a portfolio piece reflecting hands-on skills expected of a Network Engineer and aligns with industry-standard CCNA enterprise networking practices.
+**Angelo Adame**
+---
+
+# ⭐ Project Highlights
+
+This project demonstrates the implementation of a secure, scalable, and highly available enterprise network using Cisco technologies. It integrates **GRE Tunnel, OSPF, HSRP, Rapid PVST+, Port Security, DHCP Snooping, Dynamic ARP Inspection (DAI), ACLs, PAT, SSH, and VLAN 999 for unused ports** to provide resilient routing, secure Layer 2 communication, gateway redundancy, and centralized network management.
+
+The project also documents real-world troubleshooting scenarios encountered during deployment, showcasing practical problem-solving skills and hands-on experience with enterprise networking. It serves as a comprehensive portfolio project aligned with CCNA-level networking concepts and Cisco best practices.
