@@ -34,6 +34,7 @@ The enterprise network consists of:
 * 2 Cisco 3560 Layer 3 Switches
 * 4 Cisco 2960 Layer 2 Switches
 * Cisco 2911 Router
+* DHCP for Branch
 * Wireless Access Point
 * HR Department
 * Accounting Department
