@@ -1,8 +1,6 @@
-# Enterprise-Network-using-Cisco-Packet-Tracer
-Enterprise Cisco Packet Tracer network implementing GRE Tunnel, OSPF, HSRP, SSH, VLANs, ACLs, PAT, DHCP Snooping, and Layer 2 security.
 # Enterprise Network using Cisco Packet Tracer
 
-> A CCNA-level enterprise network project implementing secure inter-branch connectivity, gateway redundancy, dynamic routing, Layer 2 security, and secure remote management using Cisco technologies.
+> Enterprise Cisco Packet Tracer network implementing GRE Tunnel, OSPF, HSRP, SSH, VLANs, ACLs, PAT, DHCP Snooping, and Layer 2 security.
 
 ---
 
