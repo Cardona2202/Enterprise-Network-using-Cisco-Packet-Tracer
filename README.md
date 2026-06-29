@@ -364,16 +364,10 @@ Enterprise-Network/
 │   └── layer2-switches/
 ├── screenshots/
 │   ├── topology.png
-│   ├── gre-tunnel.png
-│   ├── ospf-neighbor.png
-│   ├── hsrp.png
-│   ├── ssh.png
-│   ├── port-security.png
-│   ├── dhcp-snooping.png
-│   ├── dai.png
-│   └── vlan999.png
-└── documentation/
-    └── Enterprise_Network_Documentation.pdf
+│   ├── main.png
+│   ├── branch.png
+
+
 ```
 
 ---
